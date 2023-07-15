@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model Todo{
+  id        Int     @id @default(autoincrement())
+  title     String
+  completed Boolean @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  option  Option?
+}
+model Option{
+  optionId Int @id @default(autoincrement())
+  priority Int @default(0)
+  settingTime String @default("24:00")
+  todo Todo @relation(fields: [todoId], references: [id])
+  todoId Int @unique
+}
