@@ -21,8 +21,6 @@ export default function SortPopOver({
               <button
                 key={value}
                 onClick={() => {
-                  console.log("value", value);
-
                   handleSort(value);
                 }}
                 className="border w-full text-sm hover:bg-slate-500"

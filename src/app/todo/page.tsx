@@ -2,14 +2,18 @@ import TodoListContainer from "@/components/todo/todo-list-container";
 import { extractTimeFromString } from "@/lib/todolist-utils";
 import { revalidatePath } from "next/cache";
 export default async function Home() {
-  const res = await fetch(process.env.NEXT_PUBLIC_HOST_URL + "/api/todos", {
+  const base = process.env.NEXT_PUBLIC_HOST_URL
+    ? process.env.NEXT_PUBLIC_HOST_URL
+    : `http://${process.env.VERCEL_URL}`;
+  const fetchUrl = base + "/api/todos";
+  const res = await fetch(fetchUrl, {
     next: { revalidate: 0 },
   });
   const todos = await res.json();
 
   async function updateItem(todo: Todo) {
     "use server";
-    const res = await fetch(process.env.NEXT_PUBLIC_HOST_URL + "/api/todos", {
+    const res = await fetch(fetchUrl, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +22,7 @@ export default async function Home() {
         newTodo: todo,
       }),
     });
-    console.log("res", 1);
+
     revalidatePath("/todo");
   }
 
@@ -28,7 +32,7 @@ export default async function Home() {
     let option = null;
     const time = extractTimeFromString(title);
     if (time !== null) option = { settingTime: time, priority: 0 };
-    const res = await fetch(process.env.NEXT_PUBLIC_HOST_URL + "/api/todos", {
+    const res = await fetch(fetchUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,7 +47,7 @@ export default async function Home() {
 
   async function deleteItem(id: number) {
     "use server";
-    const res = await fetch(process.env.NEXT_PUBLIC_HOST_URL + "/api/todos", {
+    const res = await fetch(fetchUrl, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

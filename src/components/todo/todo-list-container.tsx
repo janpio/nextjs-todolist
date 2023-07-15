@@ -17,7 +17,7 @@ export default function TodoListContainer({
   addTodo: any;
   deleteItem: any;
 }) {
-  console.log("todos1", todos);
+  console.log("todos", todos);
 
   const [unfinishTodo, setUnfinishTodo] = useState<Todo[]>(
     todos.filter((todo: Todo) => todo.completed === false)
@@ -43,8 +43,6 @@ export default function TodoListContainer({
 
   const handleSort = (sortType: string) => {
     if (sortType === "priority") {
-      console.log("sortType", sortType);
-
       setUnfinishTodo([
         ...unfinishTodo
           .filter((item) => item.option != undefined)

@@ -24,7 +24,7 @@ export default function RevisePopOver({
         priority: priority,
       },
     };
-    console.log(newTodo);
+    // console.log(newTodo);
     updateItem(newTodo);
   };
 
