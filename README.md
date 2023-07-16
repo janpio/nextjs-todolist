@@ -1,7 +1,7 @@
 # nextjs-todolist
 
-This is a simple todo list app built with Nextjs and Prisma.
-
+This is a simple to-do list app built with Nextjs and Prisma.
+Mainly using [server action](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions) to handle DB operations.
 ## Tech Stack
 
 - Next.js
