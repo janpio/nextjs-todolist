@@ -15,9 +15,9 @@ export default async function Home() {
     "use server";
     const res = await fetch(fetchUrl, {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
       body: JSON.stringify({
         newTodo: todo,
       }),
@@ -34,9 +34,9 @@ export default async function Home() {
     if (time !== null) option = { settingTime: time, priority: 0 };
     const res = await fetch(fetchUrl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
       body: JSON.stringify({
         title: title,
         option: option,
@@ -49,9 +49,9 @@ export default async function Home() {
     "use server";
     const res = await fetch(fetchUrl, {
       method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
       body: JSON.stringify({
         id: id,
       }),

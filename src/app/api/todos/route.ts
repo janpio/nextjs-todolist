@@ -37,9 +37,9 @@ export async function PATCH(req: Request) {
   if (option !== null) {
     await prisma.option.update({
       where: { optionId: option.optionId },
-      data:{
+      data: {
         priority: option.priority,
-      }
+      },
     });
   }
   await prisma.todo.update({
@@ -47,7 +47,6 @@ export async function PATCH(req: Request) {
     data: {
       completed: newTodo.completed,
       title: newTodo.title,
-      
     },
   });
 
